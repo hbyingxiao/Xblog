@@ -13,7 +13,6 @@
 # set -v 
 
 # 判断mysql服务是否启动
-# STATUS=$(systemctl status mysql.service | grep Status | awk '{print $2$3$4$5$6}')
 STATUS=$(systemctl status mysql.service | grep Active | awk '{print $3}')
 
 if [ "$STATUS" = "(dead)" ]
@@ -32,7 +31,6 @@ fi
 systemctl status mysql.service
 echo "mysql服务已启动...准备启动博客服务..."
 
-# mysql -u root -p blog
 php artisan serve &
 
 if [ "$(ps aux | grep php | head -n 1 | cut -b "78-90")" = "serve" ]
