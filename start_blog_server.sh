@@ -12,20 +12,25 @@
 
 # set -v 
 
-#判断mysql服务是否启动
-STATUS=$(systemctl status mysql.service | grep Status | awk '{print $2$3$4$5$6}')
+# 判断mysql服务是否启动
+# STATUS=$(systemctl status mysql.service | grep Status | awk '{print $2$3$4$5$6}')
+STATUS=$(systemctl status mysql.service | grep Active | awk '{print $3}')
 
-if [ "$STATUS" = "\"MariaDBserverisdown\"" ]
+# if [ "$STATUS" = "\"MariaDBserverisdown\"" ]
+if [ "$STATUS" = "(dead)" ]
 then
 	
 	echo "mysql服务没有启动，现在启动服务..."
 	sudo systemctl start mysql.service
-
-elif [ "$STATUS" = "\"TakingyourSQLrequestsnow...\"" ]
+	systemctl status mysql.service
+# elif [ "$STATUS" = "\"TakingyourSQLrequestsnow...\"" ]
+elif [ "$STATUS" = "(running)" ]
 then
 	echo "mysql服务已经启动..."
 	systemctl status mysql.service
+	
+	# mysql -u root -p blog
+	php artisan serve &
 fi
 
-# mysql -u root -p blog
-php artisan serve &
+
