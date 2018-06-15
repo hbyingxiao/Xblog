@@ -12,8 +12,7 @@
 
 # set -v 
 
-kill $(ps aux | grep php | head -n 1 | cut -b '10-16')
-kill $(ps aux | grep php | head -n 1 | cut -b '10-16')
+kill $(ps aux | grep php | head -n 1 | cut -b '10-16')  && kill $(ps aux | grep php | head -n 1 | cut -b '10-16')
 
 ps aux | grep php
 
