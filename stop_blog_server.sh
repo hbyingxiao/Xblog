@@ -10,15 +10,7 @@
 #=============================================================================
 #!/bin/bash
 
-# set -v 
-
 killall php
 
-# kill $(ps aux | grep php | head -n 1 | cut -b '10-16')
-# kill $(ps aux | grep php | head -n 1 | cut -b '10-16')
-
 ps aux | grep php
-
-# kill $(ps aux | grep php | awk 'NR==1{print}' | awk '{print $2}')
-# kill $(ps aux | grep php | awk 'NR==2{print}' | awk '{print $2}')
-
+echo "博客服務已經停止..."
